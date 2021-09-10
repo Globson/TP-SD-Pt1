@@ -54,6 +54,37 @@ public class Usuario {
         }
     }
     
+    public boolean RetiraFigurinhaSemColar(int figurinha){
+        if(this.figurinhas_sem_colar.contains(figurinha)){
+            this.figurinhas_sem_colar.remove(this.figurinhas_sem_colar.indexOf(figurinha));
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public void AdicionaFigurinhaSemColar(int figurinha){
+        this.figurinhas_sem_colar.add(figurinha);
+    }
+    
+    public float GetCoins(){
+        return this.coins;
+    }
+    
+    public boolean SubtraiCoins(float valor){
+        if(this.coins>=valor){
+            this.coins-=valor;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public void SomaCoins(float valor){
+        this.coins+=valor;
+    }
+    
     public void PrintaAlbum(){
         this.album.Printa();
     }
