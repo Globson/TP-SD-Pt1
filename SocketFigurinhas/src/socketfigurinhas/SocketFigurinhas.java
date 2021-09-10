@@ -17,14 +17,14 @@ public class SocketFigurinhas {
     public static void main(String[] args) {
         // TODO code application logic here
         Usuario user = new Usuario("Pablo","EUAMOODANIEL");
-        user.AdicionaCoins(10);
-        user.CompraPacoteFigurinha(2);
+        user.AdicionaCoins(25);
+        user.CompraPacoteFigurinha(5);
         user.PrintaFigurinhas();
         Scanner sc = new Scanner(System.in);
-        user.ColaFigurinha(sc.nextInt());
-        user.ColaFigurinha(sc.nextInt());
-        user.ColaFigurinha(sc.nextInt());
-        user.ColaFigurinha(sc.nextInt());
+        for(int i=0;i<10;i++){
+          System.out.printf("Entre com o numero da figurinha que deseja colar: ");
+          System.out.println(user.ColaFigurinha(sc.nextInt()));  
+        }
         user.PrintaAlbum();
     }
     

@@ -37,7 +37,7 @@ public class Usuario {
                 int figurinhas[] = Pacote.GetFigurinhas();
                 for(int y=0;y<4;y++){
                     //System.out.println("Fig: "+figurinhas[i]);
-                    this.figurinhas_sem_colar.add(figurinhas[i]);
+                    this.figurinhas_sem_colar.add(figurinhas[y]);
                 }
             }
             return true;

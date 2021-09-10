@@ -16,7 +16,7 @@ public class PacoteFigurinha {
         Random Rand = new Random();
         for (int i=0;i<4;i++){
             this.Pacote[i]=Rand.nextInt(151);
-            System.out.println("Fig: "+ Pacote[i]);
+            //System.out.println("Fig: "+ Pacote[i]);
         }
     }
     public int [] GetFigurinhas(){
