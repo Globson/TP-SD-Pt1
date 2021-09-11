@@ -26,20 +26,58 @@ public class SocketFigurinhas {
           System.out.printf("Entre com o numero da figurinha que deseja colar: ");
           System.out.println(user.ColaFigurinha(sc.nextInt()));  
         }
-        System.out.println("Entre com a figurinha e valor a vender:");
-        Vendas.ColocaFigurinhaAVenda(user, sc.nextInt(), sc.nextFloat());
-        System.out.println("Entre com a figurinha e valor a vender:");
-        Vendas.ColocaFigurinhaAVenda(user, sc.nextInt(), sc.nextFloat());
-        System.out.println("Entre com a figurinha e valor a vender:");
-        Vendas.ColocaFigurinhaAVenda(user, sc.nextInt(), sc.nextFloat());
+        for(int i=0;i<4;i++){
+          System.out.println("Entre com a figurinha e valor a vender:");
+          Vendas.ColocaFigurinhaAVenda(user, sc.nextInt(), sc.nextFloat());
+        }
         Vendas.PrintaFigurinhasAVenda();
-        Usuario user2 = new Usuario ("Samuel", "EuNaoJogoPokemon");
-        user2.AdicionaCoins(250);
-        Vendas.CompraFigurinha(user2, sc.nextInt());
-        System.out.println("Coins de user: "+ user.GetCoins());
+        Usuario samuel = new Usuario ("Samuel", "EuNaoJogoPokemon");
+        samuel.AdicionaCoins(250);
+        samuel.CompraPacoteFigurinha(1);
+        samuel.PrintaFigurinhas();
+        System.out.println("Entre com a figurinha e valor a vender do samuel:");
+        Vendas.ColocaFigurinhaAVenda(samuel, sc.nextInt(), sc.nextFloat());
+        Usuario arthur = new Usuario ("Arthur", "VAPOVAPO");
+        arthur.AdicionaCoins(300);
+        Usuario saulo = new Usuario ("Saulo", "YAMETE");
+        saulo.AdicionaCoins(50);
+        for(int i=0;i<4;i++){
+          System.out.println("Entre com a figurinha que deseja comprar: ");  
+          Vendas.CompraFigurinha(samuel, sc.nextInt());
+        }
+        for(int i=0;i<4;i++){
+          System.out.printf("Entre com o numero da figurinha que deseja colar: ");
+          System.out.println(samuel.ColaFigurinha(sc.nextInt()));  
+        }
+        for(int i=0;i<4;i++){
+          System.out.println("Entre com a figurinha que deseja comprar: ");  
+          Vendas.CompraFigurinha(arthur, sc.nextInt());
+        }
+        for(int i=0;i<4;i++){
+          System.out.printf("Entre com o numero da figurinha que deseja colar: ");
+          System.out.println(arthur.ColaFigurinha(sc.nextInt()));  
+        }
+        for(int i=0;i<4;i++){
+          System.out.println("Entre com a figurinha que deseja comprar: ");  
+          Vendas.CompraFigurinha(saulo, sc.nextInt());
+        }
+        for(int i=0;i<4;i++){
+          System.out.printf("Entre com o numero da figurinha que deseja colar: ");
+          System.out.println(saulo.ColaFigurinha(sc.nextInt()));  
+        }
         Vendas.PrintaFigurinhasAVenda();
+        System.out.printf("Pablo: ");
         user.PrintaAlbum();
-        user2.PrintaFigurinhas();
+        user.PrintaFigurinhas();
+        System.out.printf("Samuel: ");
+        samuel.PrintaAlbum();
+        samuel.PrintaFigurinhas();
+        System.out.printf("Arthur: ");
+        arthur.PrintaAlbum();
+        arthur.PrintaFigurinhas();
+        System.out.printf("Saulo: ");
+        saulo.PrintaAlbum();
+        saulo.PrintaFigurinhas();
     }
     
 }
