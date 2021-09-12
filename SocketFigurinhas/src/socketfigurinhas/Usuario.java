@@ -24,6 +24,17 @@ public class Usuario {
         this.figurinhas_sem_colar = new ArrayList();
     }
     
+    public boolean ComparaNomeSenha(String nome, String senha){
+        if(nome.equals(this.nome_de_usuario) && senha.equals(this.senha)){
+            return true;
+        }
+        return false;
+    }
+
+    public String getNome(){
+        return this.nome_de_usuario;
+    }
+
     public boolean AdicionaCoins(float valor){
         this.coins += valor;
         return true;

@@ -2,10 +2,13 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+https://www.devmedia.com.br/java-sockets-criando-comunicacoes-em-java/9465
+https://www.devmedia.com.br/java-socket-entendendo-a-classe-socket-e-a-serversocket-em-detalhes/31894
  */
 package socketfigurinhas;
 import java.net.*;
 import java.io.*;
+import java.util.ArrayList;
 /**
  *
  * @author grobs
@@ -13,29 +16,39 @@ import java.io.*;
 public class TCPServer {
     public static void main(String[] args) {
         // TODO code application logic here
+        ArrayList <Usuario> ListaUsuarios = new ArrayList();
+        VendaFigurinha VendasFig = new VendaFigurinha();
         ServerSocket listenSocket = null;
         Socket clientSocket = null;
         DataInputStream in;
         DataOutputStream out;
+        ObjectInputStream inObj;
         int serverPort = 7896;
-        try{
+        //Implementar leitura de arquivo persistente 
+        while(true){
+            try{
             listenSocket = new ServerSocket (serverPort);
-            System.out.println("Eu sou o servidor e estou rodando!");
+            System.out.println("Servidor Alpokebum!");
             System.out.println("Esperando...");
             clientSocket = listenSocket.accept();
             in = new DataInputStream(clientSocket.getInputStream());
             out = new DataOutputStream(clientSocket.getOutputStream());
-            String data = in.readUTF();
-            System.out.println("Um cliente chegou! Ele disse "+data);
+            inObj = new ObjectInputStream(clientSocket.getInputStream());
+            //String data = in.readUTF();
+            Usuario user = (Usuario)inObj.readObject();
+            //System.out.println("Um cliente chegou! Ele disse "+data);
             out.writeUTF("PONG");
             System.out.println("Eu respondi PONG!");
 
-        }catch(IOException e){}
-        finally{
-            try{
-                listenSocket.close();
-                clientSocket.close();
             }catch(IOException e){}
+            catch(ClassNotFoundException e){}
+            finally{
+                try{
+                    listenSocket.close();
+                    clientSocket.close();
+                }catch(IOException e){}
+            }
         }
+        
     }
 }
