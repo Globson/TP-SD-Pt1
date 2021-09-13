@@ -1,0 +1,3 @@
+https://www.devmedia.com.br/serializacao-de-objetos-em-java/23413
+https://www.devmedia.com.br/java-sockets-criando-comunicacoes-em-java/9465
+https://www.devmedia.com.br/java-socket-entendendo-a-classe-socket-e-a-serversocket-em-detalhes/31894

@@ -14,11 +14,15 @@ public class TestePersistencia {
         ArrayList<Object> users = Persistencia.lerArquivoBinario("Persistencia.txt");
         System.out.println(((Usuario)users.get(0)).getNome());
         ((Usuario)users.get(0)).PrintaAlbum();
+        ((Usuario)users.get(0)).PrintaFigurinhas();
         System.out.println(((Usuario)users.get(1)).getNome());
         ((Usuario)users.get(1)).PrintaAlbum();
+        ((Usuario)users.get(1)).PrintaFigurinhas();
         System.out.println(((Usuario)users.get(2)).getNome());
         ((Usuario)users.get(2)).PrintaAlbum();
+        ((Usuario)users.get(2)).PrintaFigurinhas();
         System.out.println(((Usuario)users.get(3)).getNome());
         ((Usuario)users.get(3)).PrintaAlbum();
+        ((Usuario)users.get(3)).PrintaFigurinhas();
     }
 }

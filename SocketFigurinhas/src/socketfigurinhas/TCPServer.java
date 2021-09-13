@@ -2,8 +2,6 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
-https://www.devmedia.com.br/java-sockets-criando-comunicacoes-em-java/9465
-https://www.devmedia.com.br/java-socket-entendendo-a-classe-socket-e-a-serversocket-em-detalhes/31894
  */
 package socketfigurinhas;
 import java.net.*;
