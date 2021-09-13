@@ -5,6 +5,7 @@
  */
 package socketfigurinhas;
 import java.util.Scanner;
+import java.util.ArrayList;
 /**
  *
  * @author grobs
@@ -21,6 +22,7 @@ public class SocketFigurinhas {
         user.AdicionaCoins(25);
         user.CompraPacoteFigurinha(5);
         user.PrintaFigurinhas();
+        ArrayList<Object> users = new ArrayList();
         Scanner sc = new Scanner(System.in);
         for(int i=0;i<4;i++){
           System.out.printf("Entre com o numero da figurinha que deseja colar: ");
@@ -78,6 +80,11 @@ public class SocketFigurinhas {
         System.out.printf("Saulo: ");
         saulo.PrintaAlbum();
         saulo.PrintaFigurinhas();
+        users.add(user);
+        users.add(samuel);
+        users.add(arthur);
+        users.add(saulo);
+        Persistencia.gravarArquivoBinario(users, "Persistencia.txt");
     }
     
 }

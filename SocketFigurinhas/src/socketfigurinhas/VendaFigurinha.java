@@ -5,11 +5,12 @@
  */
 package socketfigurinhas;
 import java.util.ArrayList;
+import java.io.Serializable;
 /**
  *
  * @author grobs
  */
-public class VendaFigurinha {
+public class VendaFigurinha implements Serializable{
     private ArrayList<Integer> Lista_Figurinhas;
     private ArrayList<Float> Valor_Figurinhas;
     private ArrayList<Usuario> Proprietarios;

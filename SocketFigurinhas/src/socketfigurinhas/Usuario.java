@@ -5,11 +5,12 @@
  */
 package socketfigurinhas;
 import java.util.ArrayList;
+import java.io.Serializable;
 /**
  *
  * @author grobs
  */
-public class Usuario {
+public class Usuario implements Serializable{
     private String nome_de_usuario;
     private String senha;
     private AlbumFigurinhas album;

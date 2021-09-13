@@ -5,11 +5,12 @@
  */
 package socketfigurinhas;
 import java.util.Random;
+import java.io.Serializable;
 /**
  *
  * @author grobs
  */
-public class PacoteFigurinha {
+public class PacoteFigurinha implements Serializable {
     private int Pacote[];
     public PacoteFigurinha(){
         this.Pacote = new int[4];

@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 package socketfigurinhas;
+import java.io.Serializable;
 /**
  *
  * @author grobs
  */
-public class AlbumFigurinhas {
+public class AlbumFigurinhas implements Serializable {
     private int matriz[];
     public AlbumFigurinhas(){
         this.matriz = new int[151];
