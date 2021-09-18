@@ -104,16 +104,42 @@ public class TCPClient {
                 }catch(Exception e){
                     System.out.println("Erro! Entrada invalida!");
                 }
-                if(opcao==8){break;}
+                if(opcao==8){
+                    out.writeBoolean(false);
+                    outObj.writeObject(user);
+                    break;
+                }
                 switch(opcao){
                     case(1):
                         user.PrintaAlbum();
                         break;
                     case(2):
+                        System.out.println("Digite a quantidade de coins em REAIS que deseja comprar: ");
+                        float valorcoins = sc.nextFloat();
+                        user.AdicionaCoins(valorcoins);
+                        break;
+                    case(3):
+                        System.out.println("Digite a quantidade de pacotes a comprar: ");
+                        int quantPac = sc.nextInt();
+                        if(user.CompraPacoteFigurinha(quantPac)){
+                            System.out.println("Pacote(s) comprado com sucesso!");
+                        }else{
+                             System.out.println("Erro! Voce esta pobre!");   
+                        }
                         break;
                     case(4):
+                        System.out.println("Figurinhas no inventario: ");
+                        user.PrintaFigurinhas();
+                        System.out.println("\nEntre com o numero da figurinha que deseja colar: ");
+                        int numFig = sc.nextInt();
+                        if(user.ColaFigurinha(numFig)){
+                            System.out.println("Figurinha colada com sucesso!");
+                        }else{
+                            System.out.println("Erro! Voce nao tem essa figurinha disponivel ou nao ela ja esta colada!");
+                        }      
                         break;
                     case(5):
+                        
                         break;
                     case(6):
                         break;
@@ -127,8 +153,9 @@ public class TCPClient {
    
         }
         catch(IOException e){
-
-        }finally{
+        
+        }catch(ClassNotFoundException e2){}
+        finally{
             if(s!=null) try{s.close();}catch(IOException e){}
         }
         sc.close();

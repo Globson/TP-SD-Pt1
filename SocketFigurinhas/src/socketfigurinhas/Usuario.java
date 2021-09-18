@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author grobs
  */
 public class Usuario implements Serializable{
-    private static final long serialVersionUID = 1L;
+    //private static final long serialVersionUID = 1L;
     private String nome_de_usuario;
     private String senha;
     private AlbumFigurinhas album;

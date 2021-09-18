@@ -24,6 +24,7 @@ public class TCPServer {
         ObjectInputStream inObj;
         ObjectOutputStream outObj;
         int serverPort = 7896;
+        int index_user_encontrado=-1;
         //Implementar leitura de arquivo persistente 
         while(true){
             try{
@@ -42,6 +43,7 @@ public class TCPServer {
                 out.writeBoolean(true); //ack
                 Usuario user = (Usuario)inObj.readObject();
                 ListaUsuarios.add(user);
+                index_user_encontrado=ListaUsuarios.indexOf(user);
                 out.writeBoolean(true); //ack
                 System.out.println("Usuario criado: "+ user.getNome());
                 
@@ -54,8 +56,7 @@ public class TCPServer {
                 String senha = in.readUTF();
                 //out.writeBoolean(true);
                 boolean user_encontrado = false;
-                int index_user_encontrado=0;
-                //System.out.println("Credenciais recebidas: "+ nome+senha);
+                System.out.println("Credenciais recebidas: "+ nome+senha);
                 for(int i=0;i<ListaUsuarios.size();i++){
                     //System.out.println(((Usuario)ListaUsuarios.get(i)).getNome());
                     if(((Usuario)ListaUsuarios.get(i)).ComparaNomeSenha(nome,senha)){
@@ -70,6 +71,19 @@ public class TCPServer {
             }
             
             
+            if(in.readBoolean()){
+                
+            }
+            else{
+                if(index_user_encontrado!=-1){
+                    Usuario userAtualizado = (Usuario)inObj.readObject();
+                    
+                    ListaUsuarios.remove(index_user_encontrado);
+                    ListaUsuarios.add(userAtualizado);
+                    Persistencia.gravarArquivoBinario(ListaUsuarios,"Persistencia.txt");
+                }           
+            }
+            
             //String data = in.readUTF();
             //Usuario user = (Usuario)inObj.readObject();
             //System.out.println("Um cliente chegou! Ele disse "+data);
@@ -80,7 +94,7 @@ public class TCPServer {
             catch(ClassNotFoundException e){}
             finally{
                 try{
-                    Persistencia.gravarArquivoBinario(ListaUsuarios,"Persistencia.txt");
+                    //Persistencia.gravarArquivoBinario(ListaUsuarios,"Persistencia.txt");
                     listenSocket.close();
                     clientSocket.close();
                 }catch(IOException e){}
