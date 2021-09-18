@@ -80,6 +80,7 @@ public class TCPServer {
             catch(ClassNotFoundException e){}
             finally{
                 try{
+                    Persistencia.gravarArquivoBinario(ListaUsuarios,"Persistencia.txt");
                     listenSocket.close();
                     clientSocket.close();
                 }catch(IOException e){}

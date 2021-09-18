@@ -36,8 +36,8 @@ public class TCPClient {
             s = new Socket("127.0.0.1",serverPort);
             DataInputStream in = new DataInputStream(s.getInputStream());
             DataOutputStream out = new DataOutputStream(s.getOutputStream());
-            //ObjectInputStream inObj = new ObjectInputStream(s.getInputStream());
             ObjectOutputStream outObj = new ObjectOutputStream(s.getOutputStream());
+            ObjectInputStream inObj = new ObjectInputStream(s.getInputStream());
             if(jacadastrado==2){
                 out.writeInt(0);
                 if(in.readBoolean()){
@@ -72,7 +72,7 @@ public class TCPClient {
                         //if(in.readBoolean()){
                             if(in.readBoolean()){
                                 System.out.println("Usuario logado com sucesso!");
-                                //user = (Usuario)inObj.readObject();
+                                user = (Usuario)inObj.readObject();
                             }
                             else{
                                 System.out.println("Falha! Nome ou senha errado!");
