@@ -37,18 +37,31 @@ public class VendaFigurinha implements Serializable{
     }
     
     public boolean ColocaFigurinhaAVenda(Usuario A,Integer Figurinha,float Valor){
-        if(A.RetiraFigurinhaSemColar(Figurinha)){
-            this.Lista_Figurinhas.add(Figurinha);
-            this.Valor_Figurinhas.add(Valor);
-            this.Proprietarios.add(A.getNome());
-            return true;
+        if(Valor>=0){
+            if(A.RetiraFigurinhaSemColar(Figurinha)){
+                this.Lista_Figurinhas.add(Figurinha);
+                this.Valor_Figurinhas.add(Valor);
+                this.Proprietarios.add(A.getNome());
+                return true;
+            }
+            return false;
+            
         }
             return false;
     }
     
-    public boolean CompraFigurinha(Usuario A, Integer Figurinha){
-        if(this.Lista_Figurinhas.contains(Figurinha)){
-            int index = this.Lista_Figurinhas.lastIndexOf(Figurinha);
+    public boolean CompraFigurinha(Usuario A, int Figurinha, float Valor){
+        boolean Encontrado = false;
+        int index=0;
+        while(!Encontrado && index<Lista_Figurinhas.size()){
+            if(this.Lista_Figurinhas.get(index)==Figurinha && this.Valor_Figurinhas.get(index)==Valor){
+                Encontrado = true;
+                break;
+            }
+            index++;
+        }
+        if(Encontrado){
+            //int index = this.Lista_Figurinhas.lastIndexOf(Figurinha);
             if(A.SubtraiCoins(this.Valor_Figurinhas.get(index))){
                 A.AdicionaFigurinhaSemColar(Figurinha);
                 //this.Proprietarios.get(index).SomaCoins(this.Valor_Figurinhas.get(index));

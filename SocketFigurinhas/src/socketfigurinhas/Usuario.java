@@ -58,18 +58,18 @@ public class Usuario implements Serializable{
         return false;
     }
     
-    public boolean ColaFigurinha(int figurinha){
+    public boolean ColaFigurinha(Integer figurinha){
         if(this.figurinhas_sem_colar.contains(figurinha)){
-            this.figurinhas_sem_colar.remove(this.figurinhas_sem_colar.indexOf(figurinha));
+            this.figurinhas_sem_colar.remove(figurinha);
             return this.album.AdicionaFigurinha(figurinha);
         }else{
             return false;
         }
     }
     
-    public boolean RetiraFigurinhaSemColar(int figurinha){
+    public boolean RetiraFigurinhaSemColar(Integer figurinha){
         if(this.figurinhas_sem_colar.contains(figurinha)){
-            this.figurinhas_sem_colar.remove(this.figurinhas_sem_colar.indexOf(figurinha));
+            this.figurinhas_sem_colar.remove(figurinha);
             return true;
         }else{
             return false;

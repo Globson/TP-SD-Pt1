@@ -159,7 +159,7 @@ public class TCPClient {
                         if(Vendinha.ColocaFigurinhaAVenda(user, numfigv, valorfigv)){
                             System.out.println("Figurinha posta a venda com sucesso!");
                         }else{
-                            System.out.println("Erro! Voce nao tem essa figurinha!");
+                            System.out.println("Erro! Voce nao tem essa figurinha ou valor invalido!");
                         }
                         outObj.reset();
                         outObj.writeObject(Vendinha);
@@ -171,10 +171,12 @@ public class TCPClient {
                         System.out.println("Coins na carteira: "+user.GetCoins());
                         System.out.println("Entre com a figurinha que deseja comprar:");
                         int numfigc = sc.nextInt();
-                        if(Vendinha.CompraFigurinha(user, numfigc)){
+                        System.out.println("Entre com o valor da figurinha que deseja comprar:");
+                        float valorfigc = sc.nextFloat();
+                        if(Vendinha.CompraFigurinha(user, numfigc,valorfigc)){
                             System.out.println("Figurinha comprada com sucesso!");
                         }else{
-                            System.out.println("Erro! Voce esta pobre!");
+                            System.out.println("Erro! Voce esta pobre ou essa figurinha nao esta disponivel!");
                         }
                         outObj.reset();
                         outObj.writeObject(Vendinha);

@@ -45,7 +45,7 @@ public class SocketFigurinhas {
         saulo.AdicionaCoins(50);
         for(int i=0;i<4;i++){
           System.out.println("Entre com a figurinha que deseja comprar: ");  
-          Vendas.CompraFigurinha(samuel, sc.nextInt());
+          Vendas.CompraFigurinha(samuel, sc.nextInt(),sc.nextFloat());
         }
         for(int i=0;i<4;i++){
           System.out.printf("Entre com o numero da figurinha que deseja colar: ");
@@ -53,7 +53,7 @@ public class SocketFigurinhas {
         }
         for(int i=0;i<4;i++){
           System.out.println("Entre com a figurinha que deseja comprar: ");  
-          Vendas.CompraFigurinha(arthur, sc.nextInt());
+          Vendas.CompraFigurinha(arthur, sc.nextInt(),sc.nextFloat());
         }
         for(int i=0;i<4;i++){
           System.out.printf("Entre com o numero da figurinha que deseja colar: ");
@@ -61,7 +61,7 @@ public class SocketFigurinhas {
         }
         for(int i=0;i<4;i++){
           System.out.println("Entre com a figurinha que deseja comprar: ");  
-          Vendas.CompraFigurinha(saulo, sc.nextInt());
+          Vendas.CompraFigurinha(saulo, sc.nextInt(),sc.nextFloat());
         }
         for(int i=0;i<4;i++){
           System.out.printf("Entre com o numero da figurinha que deseja colar: ");
