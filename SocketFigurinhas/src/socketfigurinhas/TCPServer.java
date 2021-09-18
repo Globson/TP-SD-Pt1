@@ -74,7 +74,7 @@ public class TCPServer {
                 String senha = in.readUTF();
                 //out.writeBoolean(true);
                 boolean user_encontrado = false;
-                System.out.println("Credenciais recebidas: "+ nome+senha);
+                System.out.println("Credenciais recebidas: "+ nome+" - "+senha);
                 for(int i=0;i<ListaUsuarios.size();i++){
                     //System.out.println(((Usuario)ListaUsuarios.get(i)).getNome());
                     if(((Usuario)ListaUsuarios.get(i)).ComparaNomeSenha(nome,senha)){
@@ -101,9 +101,9 @@ public class TCPServer {
                     Persistencia.gravarArquivoBinario(LVendas,"VendasFigurinha.txt");                
                 }
                 else{
-                    System.out.println("Atualizando usuario modificado!");
                     Usuario userAtualizado = (Usuario)inObj.readObject();
-                    userAtualizado.PrintaFigurinhas();
+                    System.out.println("Atualizando usuario modificado! -> "+userAtualizado.getNome() +" - Coins: "+ userAtualizado.GetCoins());
+                    //userAtualizado.PrintaFigurinhas();
                     ListaUsuarios.remove(index_user_encontrado);
                     ListaUsuarios.add(userAtualizado);
                     Persistencia.gravarArquivoBinario(ListaUsuarios,"Persistencia.txt");
