@@ -18,6 +18,7 @@ public class TCPClient {
         Socket s = null;
         Scanner sc = new Scanner(System.in);
         Usuario user = null;
+        VendaFigurinha Vendinha = null;
         System.out.println("\tOla, bem-vindo ao cliente do Alpokebum!");
         
         int jacadastrado = 0;
@@ -141,8 +142,35 @@ public class TCPClient {
                         }      
                         break;
                     case(5):
+                        out.writeBoolean(true); //vende fig
+                        //out.writeInt(1); //venda
+                        Vendinha = (VendaFigurinha)inObj.readObject();
+                        System.out.println("Entre com a figurinha a vender:");
+                        int numfigv = sc.nextInt();
+                        System.out.println("Entre com o valor a vender:");
+                        float valorfigv = sc.nextFloat();
+                        
+                        if(Vendinha.ColocaFigurinhaAVenda(user, numfigv, valorfigv)){
+                            System.out.println("Figurinha posta a venda com sucesso!");
+                        }else{
+                            System.out.println("Erro! Voce nao tem essa figurinha!");
+                        }
+                        outObj.reset();
+                        outObj.writeObject(Vendinha);
                         break;
                     case(6):
+                        out.writeBoolean(true); //compra fig
+                        Vendinha = (VendaFigurinha)inObj.readObject();
+                        Vendinha.PrintaFigurinhasAVenda();
+                        System.out.println("Entre com a figurinha que deseja comprar:");
+                        int numfigc = sc.nextInt();
+                        if(Vendinha.CompraFigurinha(user, numfigc)){
+                            System.out.println("Figurinha comprada com sucesso!");
+                        }else{
+                            System.out.println("Erro! Voce esta pobre!");
+                        }
+                        outObj.reset();
+                        outObj.writeObject(Vendinha);
                         break;
                     case(7):
                         user.PrintaFigurinhas();
