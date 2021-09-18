@@ -85,29 +85,26 @@ public class TCPServer {
                 }
             }
             
-            while(true){
-            if(in.readBoolean() && index_user_encontrado!=-1 ){
-                //if(in.readInt()==1){ //venda fig
+            while(index_user_encontrado != -1){ //while continuo se usuario é valido
+                if(in.readBoolean()){
+                    //if(in.readInt()==1){ //venda fig
                     outObj.reset();
                     outObj.writeObject((VendaFigurinha)LVendas.get(0));
                     LVendas.remove(0);
                     LVendas.add(inObj.readObject());
                     System.out.println("Vendas Atualizadas!");
                     ((VendaFigurinha)LVendas.get(0)).PrintaFigurinhasAVenda();
-                    Persistencia.gravarArquivoBinario(LVendas,"VendasFigurinha.txt");
-                
-            }
-            else{
-                if(index_user_encontrado!=-1){
+                    Persistencia.gravarArquivoBinario(LVendas,"VendasFigurinha.txt");                
+                }
+                else{
                     System.out.println("Atualizando usuario modificado!");
                     Usuario userAtualizado = (Usuario)inObj.readObject();
                     userAtualizado.PrintaFigurinhas();
                     ListaUsuarios.remove(index_user_encontrado);
                     ListaUsuarios.add(userAtualizado);
                     Persistencia.gravarArquivoBinario(ListaUsuarios,"Persistencia.txt");
+                    break;
                 }
-                break;
-            }
             }
             //String data = in.readUTF();
             //Usuario user = (Usuario)inObj.readObject();
