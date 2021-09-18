@@ -97,10 +97,11 @@ public class TCPClient {
                 System.out.println("2 - Comprar Coins");
                 System.out.println("3 - Comprar pacotes de figurinhas");
                 System.out.println("4 - Colar figurinhas");
-                System.out.println("5 - Vender figurinhas no mercado");
-                System.out.println("6 - Comprar figurinhas no mercado");
-                System.out.println("7 - Imprimir inventario"); //figgurinhas sem colar e coins
-                System.out.println("8 - Finalizar");
+                System.out.println("5 - Colar todas figurinhas disponiveis");
+                System.out.println("6 - Vender figurinhas no mercado");
+                System.out.println("7 - Comprar figurinhas no mercado");
+                System.out.println("8 - Imprimir inventario"); //figgurinhas sem colar e coins
+                System.out.println("9 - Finalizar");
                 System.out.print("Entre com a opcao desejada: ");
                 int opcao = 0;
                 try{
@@ -109,7 +110,7 @@ public class TCPClient {
                 }catch(Exception e){
                     System.out.println("Erro! Entrada invalida!");
                 }
-                if(opcao==8){
+                if(opcao==9){
                     out.writeBoolean(false);
                     user.PrintaFigurinhas();
                     outObj.reset();
@@ -147,6 +148,9 @@ public class TCPClient {
                         }      
                         break;
                     case(5):
+                        user.ColaTodasFigurinhas();
+                        break;
+                    case(6):
                         out.writeBoolean(true); //vende fig
                         //out.writeInt(1); //venda
                         Vendinha = (VendaFigurinha)inObj.readObject();
@@ -164,7 +168,7 @@ public class TCPClient {
                         outObj.reset();
                         outObj.writeObject(Vendinha);
                         break;
-                    case(6):
+                    case(7):
                         out.writeBoolean(true); //compra fig
                         Vendinha = (VendaFigurinha)inObj.readObject();
                         Vendinha.PrintaFigurinhasAVenda();
@@ -181,7 +185,7 @@ public class TCPClient {
                         outObj.reset();
                         outObj.writeObject(Vendinha);
                         break;
-                    case(7):
+                    case(8):
                         user.PrintaFigurinhas();
                         break;
                     

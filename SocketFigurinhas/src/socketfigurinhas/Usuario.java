@@ -113,4 +113,12 @@ public class Usuario implements Serializable{
         }
         System.out.println("\nCoins na carteira: "+this.coins);
     }
+    
+    public void ColaTodasFigurinhas(){
+        for(int i=0;i<this.figurinhas_sem_colar.size();i++){
+            this.ColaFigurinha(this.figurinhas_sem_colar.get(i));
+        }
+        System.out.println("Todas as figurinhas disponiveis coladas!");
+    }
+    
 }
