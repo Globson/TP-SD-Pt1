@@ -60,8 +60,13 @@ public class Usuario implements Serializable{
     
     public boolean ColaFigurinha(Integer figurinha){
         if(this.figurinhas_sem_colar.contains(figurinha)){
-            this.figurinhas_sem_colar.remove(figurinha);
-            return this.album.AdicionaFigurinha(figurinha);
+            if(this.album.AdicionaFigurinha(figurinha)){
+                this.figurinhas_sem_colar.remove(figurinha);
+                return true;
+            }
+            else{
+                return false;
+            }
         }else{
             return false;
         }
