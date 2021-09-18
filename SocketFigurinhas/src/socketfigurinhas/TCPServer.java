@@ -44,11 +44,23 @@ public class TCPServer {
             if(Entrada==0){ //criar cliente
                 out.writeBoolean(true); //ack
                 Usuario user = (Usuario)inObj.readObject();
-                ListaUsuarios.add(user);
-                index_user_encontrado=ListaUsuarios.indexOf(user);
-                out.writeBoolean(true); //ack
-                System.out.println("Usuario criado: "+ user.getNome());
-                System.out.println("Usuario criado index: "+ index_user_encontrado);
+                boolean disponivel = true;
+                for(int i=0;i<ListaUsuarios.size();i++){
+                    if(((Usuario)ListaUsuarios.get(i)).getNome().equals(user.getNome())){
+                        disponivel = false;
+                    }
+                }
+                if(disponivel){
+                    ListaUsuarios.add(user);
+                    index_user_encontrado=ListaUsuarios.indexOf(user);
+                    out.writeBoolean(true); //ack
+                    System.out.println("Usuario criado: "+ user.getNome());
+                    System.out.println("Usuario criado index: "+ index_user_encontrado);
+                }
+                else{
+                    out.writeBoolean(false); //ack
+                }
+                
                 
             }
             else if(Entrada==1){// logar cliente ja existente
@@ -74,7 +86,7 @@ public class TCPServer {
             }
             
             while(true){
-            if(in.readBoolean()){
+            if(in.readBoolean() && index_user_encontrado!=-1 ){
                 //if(in.readInt()==1){ //venda fig
                     outObj.reset();
                     outObj.writeObject((VendaFigurinha)LVendas.get(0));

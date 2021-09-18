@@ -54,6 +54,10 @@ public class TCPClient {
                     if(in.readBoolean()){
                         System.out.println("Usuario criado com sucesso!");
                     }
+                    else{
+                        System.out.println("Erro! Nome de usuario ja utilizado!");
+                        user = null;
+                    }
                 }
                 
             //enviar requisição de verificar se nome esta disponivel e de criar novo usuario.
