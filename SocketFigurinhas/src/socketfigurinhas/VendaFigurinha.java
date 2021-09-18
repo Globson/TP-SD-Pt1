@@ -11,14 +11,21 @@ import java.io.Serializable;
  * @author grobs
  */
 public class VendaFigurinha implements Serializable{
+    private static final long serialVersionUID = 1L;
     private ArrayList<Integer> Lista_Figurinhas;
     private ArrayList<Float> Valor_Figurinhas;
-    private ArrayList<Usuario> Proprietarios;
+    private ArrayList<String> Proprietarios;
+    boolean NecessitaCompensacao;
+    private String Nome_Vendedor_a_Compensar;
+    private float Valor_a_Compensar;
     
     public VendaFigurinha(){
         this.Lista_Figurinhas = new ArrayList();
         this.Valor_Figurinhas = new ArrayList();
         this.Proprietarios = new ArrayList();
+        this.NecessitaCompensacao = false;
+        this.Nome_Vendedor_a_Compensar = null;
+        this.Valor_a_Compensar = 0;
     }
     
     public void PrintaFigurinhasAVenda(){
@@ -33,7 +40,7 @@ public class VendaFigurinha implements Serializable{
         if(A.RetiraFigurinhaSemColar(Figurinha)){
             this.Lista_Figurinhas.add(Figurinha);
             this.Valor_Figurinhas.add(Valor);
-            this.Proprietarios.add(A);
+            this.Proprietarios.add(A.getNome());
             return true;
         }
             return false;
@@ -44,8 +51,15 @@ public class VendaFigurinha implements Serializable{
             int index = this.Lista_Figurinhas.lastIndexOf(Figurinha);
             if(A.SubtraiCoins(this.Valor_Figurinhas.get(index))){
                 A.AdicionaFigurinhaSemColar(Figurinha);
-                this.Proprietarios.get(index).SomaCoins(this.Valor_Figurinhas.get(index));
-                
+                //this.Proprietarios.get(index).SomaCoins(this.Valor_Figurinhas.get(index));
+                if(A.getNome().equals(this.Proprietarios.get(index))){
+                    A.AdicionaCoins(this.Valor_Figurinhas.get(index));
+                }
+                else{
+                    this.NecessitaCompensacao = true;
+                    this.Nome_Vendedor_a_Compensar = this.Proprietarios.get(index);
+                    this.Valor_a_Compensar = this.Valor_Figurinhas.get(index);
+                }
                 this.Valor_Figurinhas.remove(index); //Pode acontecer bugs, verificar dps se remove figurinha por indice ou por conteudo, pois ambos sao int
                 this.Lista_Figurinhas.remove(index);
                 this.Proprietarios.remove(index);
@@ -58,4 +72,17 @@ public class VendaFigurinha implements Serializable{
         }
     }
     
+    public void CompensaVenda(ArrayList<Object> ListaUsuarios){
+        if(this.NecessitaCompensacao){
+            for(int i=0;i<ListaUsuarios.size();i++){
+                if(((Usuario)ListaUsuarios.get(i)).getNome().equals(this.Nome_Vendedor_a_Compensar)){
+                    ((Usuario)ListaUsuarios.get(i)).AdicionaCoins(this.Valor_a_Compensar);
+                    break;
+                }
+            }
+            this.NecessitaCompensacao = false;
+            this.Nome_Vendedor_a_Compensar = null;
+            this.Valor_a_Compensar = 0;
+        }
+    }
 }
