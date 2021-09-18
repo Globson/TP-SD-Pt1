@@ -126,6 +126,7 @@ public class TCPClient {
                         user.AdicionaCoins(valorcoins);
                         break;
                     case(3):
+                        System.out.println("Coins na carteira: "+user.GetCoins());
                         System.out.println("Digite a quantidade de pacotes a comprar: ");
                         int quantPac = sc.nextInt();
                         if(user.CompraPacoteFigurinha(quantPac)){
@@ -149,6 +150,7 @@ public class TCPClient {
                         out.writeBoolean(true); //vende fig
                         //out.writeInt(1); //venda
                         Vendinha = (VendaFigurinha)inObj.readObject();
+                        user.PrintaFigurinhas();
                         System.out.println("Entre com a figurinha a vender:");
                         int numfigv = sc.nextInt();
                         System.out.println("Entre com o valor a vender:");
@@ -166,6 +168,7 @@ public class TCPClient {
                         out.writeBoolean(true); //compra fig
                         Vendinha = (VendaFigurinha)inObj.readObject();
                         Vendinha.PrintaFigurinhasAVenda();
+                        System.out.println("Coins na carteira: "+user.GetCoins());
                         System.out.println("Entre com a figurinha que deseja comprar:");
                         int numfigc = sc.nextInt();
                         if(Vendinha.CompraFigurinha(user, numfigc)){

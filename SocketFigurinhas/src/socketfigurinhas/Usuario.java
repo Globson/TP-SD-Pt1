@@ -106,6 +106,6 @@ public class Usuario implements Serializable{
         for(int i=0;i<this.figurinhas_sem_colar.size();i++){
             System.out.print(this.figurinhas_sem_colar.get(i)+" ");
         }
-        System.out.println("Coins: "+this.coins);
+        System.out.println("\nCoins na carteira: "+this.coins);
     }
 }

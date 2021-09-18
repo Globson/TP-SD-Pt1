@@ -14,10 +14,13 @@ import java.util.ArrayList;
 public class TCPServer {
     public static void main(String[] args) {
         // TODO code application logic here
-        ArrayList <Object> ListaUsuarios = new ArrayList();
+        ArrayList <Object> ListaUsuarios = null;
         ListaUsuarios = Persistencia.lerArquivoBinario("Persistencia.txt");
-        ArrayList <Object> LVendas = new ArrayList();
+        ArrayList <Object> LVendas = null;
         LVendas = Persistencia.lerArquivoBinario("VendasFigurinha.txt");
+        if(LVendas.size()<1){
+            LVendas.add(new VendaFigurinha());
+        }
         ((VendaFigurinha)LVendas.get(0)).PrintaFigurinhasAVenda();
         ServerSocket listenSocket = null;
         Socket clientSocket = null;
@@ -92,6 +95,7 @@ public class TCPServer {
                     outObj.writeObject((VendaFigurinha)LVendas.get(0));
                     LVendas.remove(0);
                     LVendas.add(inObj.readObject());
+                    ((VendaFigurinha)LVendas.get(0)).CompensaVenda(ListaUsuarios);
                     System.out.println("Vendas Atualizadas!");
                     ((VendaFigurinha)LVendas.get(0)).PrintaFigurinhasAVenda();
                     Persistencia.gravarArquivoBinario(LVendas,"VendasFigurinha.txt");                
