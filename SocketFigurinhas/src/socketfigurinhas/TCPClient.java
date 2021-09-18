@@ -106,6 +106,8 @@ public class TCPClient {
                 }
                 if(opcao==8){
                     out.writeBoolean(false);
+                    user.PrintaFigurinhas();
+                    outObj.reset();
                     outObj.writeObject(user);
                     break;
                 }
