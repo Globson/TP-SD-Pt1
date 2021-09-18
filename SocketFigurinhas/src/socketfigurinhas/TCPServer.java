@@ -54,14 +54,19 @@ public class TCPServer {
                 String senha = in.readUTF();
                 //out.writeBoolean(true);
                 boolean user_encontrado = false;
+                int index_user_encontrado=0;
                 //System.out.println("Credenciais recebidas: "+ nome+senha);
                 for(int i=0;i<ListaUsuarios.size();i++){
                     //System.out.println(((Usuario)ListaUsuarios.get(i)).getNome());
                     if(((Usuario)ListaUsuarios.get(i)).ComparaNomeSenha(nome,senha)){
+                        index_user_encontrado = i;
                         user_encontrado = true;
                     }
                 }
                 out.writeBoolean(user_encontrado);
+                if(user_encontrado){
+                    outObj.writeObject(((Usuario)ListaUsuarios.get(index_user_encontrado)));
+                }
             }
             
             

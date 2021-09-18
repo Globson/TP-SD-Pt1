@@ -17,6 +17,7 @@ public class TCPClient {
         // TODO code application logic here
         Socket s = null;
         Scanner sc = new Scanner(System.in);
+        Usuario user = null;
         System.out.println("\tOla, bem-vindo ao cliente do Alpokebum!");
         
         int jacadastrado = 0;
@@ -29,7 +30,6 @@ public class TCPClient {
         }catch(Exception e){
             System.out.println("Erro! Entrada invalida!");
         }
-        System.out.println(jacadastrado);
         
         try{
             int serverPort=7896;
@@ -48,8 +48,8 @@ public class TCPClient {
                     nome = sc.nextLine();
                     System.out.print("Entre com a senha:");
                     senha = sc.nextLine();
-                    Usuario newuser = new Usuario(nome, senha);
-                    outObj.writeObject(newuser);
+                    user = new Usuario(nome, senha);
+                    outObj.writeObject(user);
                     if(in.readBoolean()){
                         System.out.println("Usuario criado com sucesso!");
                     }
@@ -72,10 +72,12 @@ public class TCPClient {
                         //if(in.readBoolean()){
                             if(in.readBoolean()){
                                 System.out.println("Usuario logado com sucesso!");
+                                //user = (Usuario)inObj.readObject();
                             }
                             else{
                                 System.out.println("Falha! Nome ou senha errado!");
                             }
+                            
                         //}
                     //}
                     
@@ -83,20 +85,52 @@ public class TCPClient {
                 
             //enviar requisição de login
             }
-        
-        
-        
-            
-            //System.out.println("Eu sou um cliente!");
-            //System.out.println("PING....");
-            //out.writeUTF("PING!");
-            //String data = in.readUTF();
-            //System.out.println(data);
+            while(true){
+                if(user==null){break;}
+                System.out.println("\tMenu principal");
+                System.out.println("1 - Imprimir meu album");
+                System.out.println("2 - Comprar Coins");
+                System.out.println("3 - Comprar pacotes de figurinhas");
+                System.out.println("4 - Colar figurinhas");
+                System.out.println("5 - Vender figurinhas no mercado");
+                System.out.println("6 - Comprar figurinhas no mercado");
+                System.out.println("7 - Imprimir inventario"); //figgurinhas sem colar e coins
+                System.out.println("8 - Finalizar");
+                System.out.print("Entre com a opcao desejada: ");
+                int opcao = 0;
+                try{
+                    opcao= sc.nextInt();
+                     sc.nextLine();
+                }catch(Exception e){
+                    System.out.println("Erro! Entrada invalida!");
+                }
+                if(opcao==8){break;}
+                switch(opcao){
+                    case(1):
+                        user.PrintaAlbum();
+                        break;
+                    case(2):
+                        break;
+                    case(4):
+                        break;
+                    case(5):
+                        break;
+                    case(6):
+                        break;
+                    case(7):
+                        user.PrintaFigurinhas();
+                        break;
+                    
+                }
+                        
+            }
+   
         }
         catch(IOException e){
 
         }finally{
             if(s!=null) try{s.close();}catch(IOException e){}
         }
+        sc.close();
     }
 }
