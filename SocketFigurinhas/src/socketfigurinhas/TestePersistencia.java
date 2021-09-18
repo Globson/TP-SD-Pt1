@@ -12,6 +12,10 @@ import java.util.ArrayList;
 public class TestePersistencia {
     public static void main(String[] args){
         ArrayList<Object> users = Persistencia.lerArquivoBinario("Persistencia.txt");
+        for(int i=0;i<users.size();i++){
+            System.out.println(((Usuario)users.get(i)).getNome());
+        }
+        /*
         System.out.println(((Usuario)users.get(0)).getNome());
         ((Usuario)users.get(0)).PrintaAlbum();
         ((Usuario)users.get(0)).PrintaFigurinhas();
@@ -24,6 +28,6 @@ public class TestePersistencia {
         System.out.println(((Usuario)users.get(3)).getNome());
         ((Usuario)users.get(3)).PrintaAlbum();
         ((Usuario)users.get(3)).PrintaFigurinhas();
-        System.out.println(((Usuario)users.get(3)).ComparaNomeSenha("Saulo", "YAMETE"));
+        System.out.println(((Usuario)users.get(3)).ComparaNomeSenha("Saulo", "YAMETE"));*/
     }
 }

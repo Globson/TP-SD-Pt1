@@ -85,6 +85,8 @@ public class SocketFigurinhas {
         users.add(arthur);
         users.add(saulo);
         Persistencia.gravarArquivoBinario(users, "Persistencia.txt");
+        ArrayList <Object> LVendas = new ArrayList(); LVendas.add(Vendas);
+        Persistencia.gravarArquivoBinario(LVendas, "VendasFigurinha.txt");
     }
     
 }

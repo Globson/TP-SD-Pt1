@@ -16,7 +16,9 @@ public class TCPServer {
         // TODO code application logic here
         ArrayList <Object> ListaUsuarios = new ArrayList();
         ListaUsuarios = Persistencia.lerArquivoBinario("Persistencia.txt");
-        VendaFigurinha VendasFig = new VendaFigurinha();
+        ArrayList <Object> LVendas = new ArrayList();
+        LVendas = Persistencia.lerArquivoBinario("VendasFigurinha.txt");
+        ((VendaFigurinha)LVendas.get(0)).PrintaFigurinhasAVenda();
         ServerSocket listenSocket = null;
         Socket clientSocket = null;
         DataInputStream in;
@@ -46,6 +48,7 @@ public class TCPServer {
                 index_user_encontrado=ListaUsuarios.indexOf(user);
                 out.writeBoolean(true); //ack
                 System.out.println("Usuario criado: "+ user.getNome());
+                System.out.println("Usuario criado index: "+ index_user_encontrado);
                 
             }
             else if(Entrada==1){// logar cliente ja existente
@@ -76,8 +79,9 @@ public class TCPServer {
             }
             else{
                 if(index_user_encontrado!=-1){
+                    System.out.println("Atualizando usuario modificado!");
                     Usuario userAtualizado = (Usuario)inObj.readObject();
-                    
+                    userAtualizado.PrintaFigurinhas();
                     ListaUsuarios.remove(index_user_encontrado);
                     ListaUsuarios.add(userAtualizado);
                     Persistencia.gravarArquivoBinario(ListaUsuarios,"Persistencia.txt");
