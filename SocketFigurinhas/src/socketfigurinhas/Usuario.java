@@ -43,8 +43,8 @@ public class Usuario implements Serializable{
     }
     
     public boolean CompraPacoteFigurinha(int pacotes){
-        if(this.coins >= 4 * pacotes ){
-            this.coins -= (4*pacotes);
+        if(this.coins >= 5 * pacotes ){
+            this.coins -= (5*pacotes);
             for(int i=0;i<pacotes;i++){
                 PacoteFigurinha Pacote = new PacoteFigurinha();
                 int figurinhas[] = Pacote.GetFigurinhas();
