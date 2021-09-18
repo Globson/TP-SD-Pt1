@@ -25,41 +25,73 @@ public class TCPClient {
         System.out.print("Entre com a opcao desejada: ");
         try{
             jacadastrado = sc.nextInt();
+            sc.nextLine();
         }catch(Exception e){
             System.out.println("Erro! Entrada invalida!");
         }
-        if(jacadastrado==1){
-            String nome;
-            String senha;
-            System.out.print("Entre com o nome de usuario: ");
-            nome = sc.nextLine();
-            System.out.print("Entre com a senha:");
-            senha = sc.nextLine();
-            //enviar requisição de login
-            
-        }else{
-            System.out.println("Vamos criar seu usuário!");
-            String nome;
-            String senha;
-            System.out.print("Entre com o nome de usuario: ");
-            nome = sc.nextLine();
-            System.out.print("Entre com a senha:");
-            senha = sc.nextLine();
-            Usuario newuser = new Usuario(nome, senha);
-            //enviar requisição de verificar se nome esta disponivel e de criar novo usuario.
-        }
-        
+        System.out.println(jacadastrado);
         
         try{
             int serverPort=7896;
             s = new Socket("127.0.0.1",serverPort);
             DataInputStream in = new DataInputStream(s.getInputStream());
             DataOutputStream out = new DataOutputStream(s.getOutputStream());
-            System.out.println("Eu sou um cliente!");
-            System.out.println("PING....");
-            out.writeUTF("PING!");
-            String data = in.readUTF();
-            System.out.println(data);
+            //ObjectInputStream inObj = new ObjectInputStream(s.getInputStream());
+            ObjectOutputStream outObj = new ObjectOutputStream(s.getOutputStream());
+            if(jacadastrado==2){
+                out.writeInt(0);
+                if(in.readBoolean()){
+                    System.out.println("Vamos criar seu usuário!");
+                    String nome;
+                    String senha;
+                    System.out.print("Entre com o nome de usuario: ");
+                    nome = sc.nextLine();
+                    System.out.print("Entre com a senha:");
+                    senha = sc.nextLine();
+                    Usuario newuser = new Usuario(nome, senha);
+                    outObj.writeObject(newuser);
+                    if(in.readBoolean()){
+                        System.out.println("Usuario criado com sucesso!");
+                    }
+                }
+                
+            //enviar requisição de verificar se nome esta disponivel e de criar novo usuario.
+            
+            }else{
+                out.writeInt(1);
+                if(in.readBoolean()){
+                    String nome;
+                    String senha;
+                    System.out.print("Entre com o nome de usuario: ");
+                    nome = sc.nextLine();
+                    System.out.print("Entre com a senha:");
+                    senha = sc.nextLine();
+                    out.writeUTF(nome);
+                    //if(in.readBoolean()){
+                        out.writeUTF(senha);
+                        //if(in.readBoolean()){
+                            if(in.readBoolean()){
+                                System.out.println("Usuario logado com sucesso!");
+                            }
+                            else{
+                                System.out.println("Falha! Nome ou senha errado!");
+                            }
+                        //}
+                    //}
+                    
+                }
+                
+            //enviar requisição de login
+            }
+        
+        
+        
+            
+            //System.out.println("Eu sou um cliente!");
+            //System.out.println("PING....");
+            //out.writeUTF("PING!");
+            //String data = in.readUTF();
+            //System.out.println(data);
         }
         catch(IOException e){
 

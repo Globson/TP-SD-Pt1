@@ -24,5 +24,6 @@ public class TestePersistencia {
         System.out.println(((Usuario)users.get(3)).getNome());
         ((Usuario)users.get(3)).PrintaAlbum();
         ((Usuario)users.get(3)).PrintaFigurinhas();
+        System.out.println(((Usuario)users.get(3)).ComparaNomeSenha("Saulo", "YAMETE"));
     }
 }
