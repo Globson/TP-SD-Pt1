@@ -144,7 +144,7 @@ public class TCPClient {
                         if(user.ColaFigurinha(numFig)){
                             System.out.println("Figurinha colada com sucesso!");
                         }else{
-                            System.out.println("Erro! Voce nao tem essa figurinha disponivel ou nao ela ja esta colada!");
+                            System.out.println("Erro! Voce nao tem essa figurinha disponivel ou ela ja esta colada!");
                         }      
                         break;
                     case(5):
